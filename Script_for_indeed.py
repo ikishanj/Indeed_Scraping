@@ -58,19 +58,12 @@ def get_date(result):
 #roles that are required to run in the search bar
 indeed_roles = ['Social Media Marketing',"e-commerce","SEO Specialist","Digital marketing",'VP of marketing']
 
-#indeed_roles = ["SEO Specialist","Digital marketing",
-#'VP of marketing',
-#'Director of marketing'+ 
-#'e-commerce'+ "VP marketing"+"Growth Hacker", "PPC" + "SEM"
-#+"SEO"+"Ecommerce marketing"+"Influencer Marketing"+"Content Marketing"
-#+"Facebook Ads"+"Google Ads"+"Social Media Marketing"+"Media Buyer"]
-
 
 #Running the for loop for a range of 10 job listings per page till 100 pages
 results = []
 
 for role in indeed_roles:
-  for start in range(500,1000,10):
+  for start in range(0,100,10):
     url = "https://www.indeed.com/jobs?q="+role+"&sort=date&l=United+States&start="+str(start)+""  
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     #url = "https://www.indeed.com/jobs?q="+role+"&l=United+States&rbl=New+York%2C+NY&sort=date&ts=1529120086448&rq=1&fromage=last&start="+str(start)+"&sort=&psf=advsrch"
@@ -112,7 +105,6 @@ google_sheet = pygsheets.authorize(outh_file = ".jsonfilr")
 sheet = google_sheet.open("nameofthesheet")
 
 
-
 Staffing_Agencies = sheet.worksheet_by_title("Staffing Agencies - EXCLUSION")
 Big_Company = sheet.worksheet_by_title("Big Company - EXCLUSION")
 Digital_Marketing_Agencies = sheet.worksheet_by_title("Digital Marketing Agencies - EXCLUSION")
@@ -143,8 +135,6 @@ indeed_vp_df = indeed_vp.get_as_df()
 
 
 
-
-
 #creating a list of companies coloumn for the above data frames
 Staffing_Agencies_list = Staffing_Agencies_df.iloc[:,1].tolist()
 Big_Company_list = Big_Company_df.iloc[:,0].tolist()
@@ -157,11 +147,10 @@ Angel_List_list = Angel_List_df.iloc[:,2].tolist()
 Funded_Companies_list = Funded_Companies_df.iloc[:,5].tolist()
 Glassdoor_list = Glassdoor_df.iloc[:,2].tolist()
 indeed_list = Indeed_df.iloc[:,4].tolist()
-#indeed_vp_list = indeed_vp_df.iloc[:,0].tolist()
+
+
 
 #removing the empty spaces from the list
-
-
 Staffing_Agencies_list  = filter(None, Staffing_Agencies_list)
 Big_Company_list = filter(None, Big_Company_list)
 Digital_Marketing_Agencies_list = filter(None, Digital_Marketing_Agencies_list)
@@ -173,7 +162,7 @@ Angel_List_list = filter(None, Angel_List_list)
 Funded_Companies_list= filter(None, Funded_Companies_list)
 Glassdoor_list= filter(None, Glassdoor_list)
 indeed_list = filter(None, indeed_list)
-#indeed_vp_list = filter(None, indeed_vp_list)
+
 
 List_ready["Company_Name"] = [x.replace("\n","") for x in List_ready["Company_Name"]]
 List_ready["Company_Name"] = [x.replace("\n\n","") for x in List_ready["Company_Name"]]
