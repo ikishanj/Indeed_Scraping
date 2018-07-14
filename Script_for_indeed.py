@@ -106,11 +106,10 @@ List_ready = final_list
 
 #Authorizing the key to access google spreadsheets
 
-google_sheet = pygsheets.authorize(outh_file = "client_secret_10297023223-b0fppppd5q4r8rsaudqfdv1q15usun0k.apps.googleusercontent.com.json")
+google_sheet = pygsheets.authorize(outh_file = ".jsonfilr")
 
-#google_sheet = pygsheets.authorize(service_file='Digital CPR-46d4d1db99b4.json')
 #Open spreadsheet
-sheet = google_sheet.open('Business Development')
+sheet = google_sheet.open("nameofthesheet")
 
 
 
